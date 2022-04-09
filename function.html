@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{
+            margin-left : 3px;
+        }
+        button{
+            margin-right : 5px;
+        }
+    </style>
+</head>
+<body>
+    <h3>나의 단어장 만들기</h3>
+    <hr>
+    영어<input type = "text" id = "english"><br>
+    한글<input type = "text" id = "korean"><br><br>
+    <button onclick = "store()">단어 저장</button><button onclick = "retrieve()">영단어 검색</button>
+    <button onclick = "remove()">단어 삭제</button><button onclick = "show()">전체 보기</button>
+    <script>
+        let english = document.getElementById("english");
+        let korean = document.getElementById("korean");
+        function store(){
+            if(!window.localStorage){
+                alert("로컬 스토리지를 지원하지 않습니다.");
+            }
+            else{
+                for(let i =0;i<localStorage.length;i++){
+                    if(english.value == localStorage.key(i)){
+                        let ret = confirm(english.value + "가 이미 있습니다. 수정하시겠습니까?");
+                        if(ret){
+                            localStorage.removeItem(english.value);
+                            localStorage.setItem(english.value,korean.value);
+                        }
+                        
+                    }
+                    
+                }
+                localStorage.setItem(english.value,korean.value);
+            }
+        }
+        function retrieve(){
+            let val = localStorage.getItem(english.value);
+            if(val == null){
+                alert(english.value +"는 없는 단어입니다.");
+            }
+            else{
+                korean.value = val;
+            }
+        }
+        function remove(){
+            if(english.value == ""){
+                alert("단어를 입력하십시오.");
+            }
+            else{
+                localStorage.removeItem(english.value);
+            }
+        }
+        function show(){
+            window.open("openchallenge12(2).html", "_blank");
+        }
+    </script>
+</body>
+</html>

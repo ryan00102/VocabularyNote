@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            display : inline-block;
+            width : 100px;
+            text-align : center;
+            margin-top : 0px;
+            margin-bottom : 0px;
+        }
+        div{
+            background-color: aliceblue;
+            width : 300px;
+        }
+        #num{
+            border : 1px solid yellowgreen;
+            width : 20px;
+        }
+    </style>
+</head>
+<body>
+    <h3>나의 단어장 모두 출력</h3>
+    <hr>
+    <div id = "list">
+        
+    </div>
+    <script>
+        let list = document.getElementById("list");
+        let text ="";
+        for(let i =0;i<localStorage.length;i++){
+            let k = localStorage.key(i);
+            text+= "<p id = \"num\">"+(1+i)+"</p>"+"<p><strong>"+ k +"</strong></p>" + localStorage.getItem(k) + "<br>"
+        }
+        list.innerHTML = text;
+    </script>
+</body>
+</html>
+
